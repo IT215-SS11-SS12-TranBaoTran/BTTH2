@@ -1,9 +1,11 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Double
 from database import Base
 
-class OrderModel(Base):
-    __tablename__ = "orders"
+class SmartHomePlan(Base):
+    __tablename__ = "smart_home_plans"
 
-    id = Column(Integer, primary_key=True, index=True)
-    customer_name = Column(String(100), nullable=False)
-    total_price = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    plan_code = Column(String(50), unique=True, nullable=False)
+    plan_name = Column(String(255), nullable=False)
+    device_quantity = Column(Integer, nullable=False)
+    price = Column(Double, nullable=False)
