@@ -1,9 +1,16 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Optional, Any
 
-class OrderResponse(BaseModel):
-    id: int
-    customer_name: str
-    total_price: int
+class SmartHomeRequest(BaseModel):
+    plan_code: str
+    plan_name: str
+    device_quantity: int = Field(gt=0)
+    price: float = Field(gt=0)
 
-    class Config:
-        from_attributes = True
+class ResponseModel(BaseModel):
+    statusCode: int
+    message: str
+    error: Optional[Any]
+    data: Optional[Any]
+    path: str
+    timestamp: str
